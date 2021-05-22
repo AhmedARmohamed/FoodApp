@@ -3,13 +3,6 @@ const Menu = require("../models/menu");
 const express = require("express");
 const router = express.Router();
 
-const menus = [
-  { id: 1, name: "chips", price: 80 },
-  { id: 2, name: "chicken", price: 180 },
-  { id: 3, name: "Briyani", price: 380 },
-  { id: 4, name: "Soda", price: 80 },
-];
-
 // feature 1 post a menu
 router.post("/", async (req, res) => {
   console.log(req.body);
@@ -28,6 +21,20 @@ router.post("/", async (req, res) => {
     });
   } catch (error) {
     res.status(400).json({ message: error.message });
+  }
+});
+
+// get all menus
+router.get("/", async (req, res) => {
+  try {
+    const menus = await Menu.find();
+    res.status(200).json({
+      status: 200,
+      message: "OK",
+      data: menus,
+    });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
   }
 });
 
