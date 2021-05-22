@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-const menu = require("./routes/menu");
+const menu = require("./routes/menus");
+const order = require("./routes/orders");
 const express = require("express");
 const app = express();
 
@@ -15,6 +16,7 @@ mongoose
 app.use(express.json());
 
 app.use("/menu", menu);
+app.use("/order", order);
 
 // PORT
 const port = process.env.PORT || 5000;
